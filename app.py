@@ -13,13 +13,11 @@ from yolov5.utils.general import scale_boxes, non_max_suppression
 from yolov5.utils.torch_utils import select_device
 from yolov5.models.common import DetectMultiBackend
 
-# Model Setup
-device = select_device('cpu')
-reader = easyocr.Reader(['en'], gpu=False)
 
-
+device = select_device('cpu')  # or 'cuda:0' if GPU is available
+model_path = 'yolov5/runs/train/exp/weights/best.pt'  # or wherever your file is
 # Correct relative path to the model file
-model_path = os.path.join("yolov5", "runs", "train", "exp2", "weights", "best.pt")
+# model_path = os.path.join("yolov5", "runs", "train", "exp2", "weights", "best.pt")
 
 model = DetectMultiBackend(model_path, device=device)
 
