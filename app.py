@@ -6,8 +6,12 @@ import os
 from PIL import Image
 import easyocr
 import sys
-YOLO_PATH = os.path.join(os.path.dirname(__file__), 'yolov5')
-sys.path.append(YOLO_PATH)
+
+BASE_DIR = Path(__file__).resolve().parent
+model_path = BASE_DIR / "yolov5" / "runs" / "train" / "exp2" / "weights" / "best.pt"
+
+# Use this path when loading your YOLOv5 model
+model = torch.hub.load(str(BASE_DIR / 'yolov5'), 'custom', path=str(model_path), source='local')
 
 from yolov5.utils.general import scale_boxes, non_max_suppression
 from yolov5.utils.torch_utils import select_device
@@ -17,7 +21,7 @@ from yolov5.models.common import DetectMultiBackend
 device = select_device('cpu')  # or 'cuda:0' if GPU is available
 # model_path = 'yolov5/runs/train/exp/weights/best.pt'  # or wherever your file is
 # Correct relative path to the model file
-model_path = os.path.join("car-recognition-streamlit","yolov5", "runs", "train", "exp2", "weights", "best.pt")
+# model_path = os.path.join("car-recognition-streamlit","yolov5", "runs", "train", "exp2", "weights", "best.pt")
 
 model = DetectMultiBackend(model_path, device=device)
 
