@@ -1,16 +1,6 @@
-# YOLOv5 dependencies
-torch>=1.7
-torchvision
-matplotlib
-numpy
-opencv-python
-pillow
-PyYAML
-tqdm
-seaborn
 streamlit
-lxml
+torch
+opencv-python
+numpy
+Pillow
 easyocr
-split-folders
-requests
-ultralytics
