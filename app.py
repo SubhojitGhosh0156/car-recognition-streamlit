@@ -8,7 +8,7 @@ from PIL import Image
 import easyocr
 
 # 👇 Add yolov5 path
-YOLO_PATH = os.path.join(os.getcwd(), 'yolov5')
+YOLO_PATH ="car-recognition-streamlit/yolov5"
 sys.path.append(YOLO_PATH)
 
 # 👇 Now import from yolov5 modules
