@@ -34,14 +34,14 @@ import torch
 import torchvision
 import yaml
 
-# Import 'ultralytics' package or install if missing
-# try:
-#     import ultralytics
+Import 'ultralytics' package or install if missing
+try:
+    import ultralytics
 
-#     assert hasattr(ultralytics, "__version__")  # verify package is not directory
-# except (ImportError, AssertionError):
-#     os.system("pip install -U ultralytics")
-#     import ultralytics
+    assert hasattr(ultralytics, "__version__")  # verify package is not directory
+except (ImportError, AssertionError):
+    os.system("pip install -U ultralytics")
+    import ultralytics
 
 from ultralytics.utils.checks import check_requirements
 from ultralytics.utils.patches import torch_load
@@ -1292,4 +1292,5 @@ if Path(inspect.stack()[0].filename).parent.parent.as_posix() in inspect.stack()
     cv2.imread, cv2.imwrite, cv2.imshow = imread, imwrite, imshow  # redefine
 
 # Variables ------------------------------------------------------------------------------------------------------------
+
 
