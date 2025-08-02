@@ -7,40 +7,37 @@ import streamlit as st
 from PIL import Image
 import easyocr
 
-# Path to YOLOv5 directory
-YOLO_PATH = os.path.join(os.path.dirname(__file__), 'yolov5')
+# 👇 Add yolov5 path
+YOLO_PATH = os.path.join(os.getcwd(), 'yolov5')
 sys.path.append(YOLO_PATH)
 
 from utils.general import scale_boxes, non_max_suppression
 from utils.torch_utils import select_device
 from models.common import DetectMultiBackend
 
-# Load YOLOv5 model
+# 📌 Model setup
 device = select_device('cpu')
 reader = easyocr.Reader(['en'], gpu=False)
+model_path = 'yolov5/runs/train/exp2/weights/best.pt'
 
-model_path = os.path.join(YOLO_PATH, 'runs', 'train', 'exp2', 'weights', 'best.pt')
+# ✅ Load model
 model = DetectMultiBackend(model_path, device=device)
+model.eval()
 
-# Streamlit UI
-st.set_page_config(page_title="Number Plate Detector", layout="centered")
+# 🖼️ Streamlit UI
 st.title("🚘 Number Plate Detection")
 
-# Camera Input
 uploaded_img = st.camera_input("📷 Capture Image from Webcam")
 
 if uploaded_img is not None:
-    # Convert to OpenCV image
     image = Image.open(uploaded_img)
     img = np.array(image.convert("RGB"))
     original_shape = img.shape
 
-    # Resize and convert to tensor
     img_resized = cv2.resize(img, (640, 640))
     img_rgb = img_resized[:, :, ::-1].copy().transpose(2, 0, 1)
     img_tensor = torch.from_numpy(img_rgb).float().div(255.0).unsqueeze(0).to(device)
 
-    # Run detection
     pred = model(img_tensor, augment=False, visualize=False)
     pred = non_max_suppression(pred, conf_thres=0.25, iou_thres=0.65)
 
@@ -66,19 +63,14 @@ if uploaded_img is not None:
                     plate_text = " ".join([r[-2] for r in result])
                     if "IND" not in plate_text.upper() and "INO" not in plate_text.upper():
                         detected_text = plate_text
-                        break
 
-    # Show results
     st.image(img, caption="Detected Number Plate", channels="BGR", use_column_width=True)
 
     if detected_text:
         st.success(f"✅ Detected Plate: {detected_text}")
-        col1, col2 = st.columns(2)
-        with col1:
-            if st.button("✅ Use This Plate"):
-                st.info(f"Plate '{detected_text}' accepted.")
-        with col2:
-            if st.button("❌ Clear"):
-                st.experimental_rerun()
+        if st.button("✅ Use This Plate"):
+            st.info(f"Plate '{detected_text}' accepted.")
+        if st.button("❌ Clear"):
+            st.experimental_rerun()
     else:
         st.warning("⚠️ No valid plate detected (or 'IND' filtered).")
