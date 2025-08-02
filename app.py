@@ -18,11 +18,13 @@ from models.common import DetectMultiBackend
 # 📌 Model setup
 device = select_device('cpu')
 reader = easyocr.Reader(['en'], gpu=False)
-model_path = 'yolov5/runs/train/exp2/weights/best.pt'
+model_path = os.path.join(os.getcwd(), 'yolov5', 'runs', 'train', 'exp2', 'weights', 'best.pt')
+
 
 # ✅ Load model
-model = DetectMultiBackend(model_path, device=device)
+model = torch.load(model_path, map_location=device)['model'].float()
 model.eval()
+
 
 # 🖼️ Streamlit UI
 st.title("🚘 Number Plate Detection")
