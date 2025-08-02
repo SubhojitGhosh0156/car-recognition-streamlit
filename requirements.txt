@@ -7,3 +7,4 @@ easyocr
 matplotlib
 PyYAML
 ultralytics
+seaborn
