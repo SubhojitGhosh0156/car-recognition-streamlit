@@ -18,8 +18,9 @@ from yolov5.utils.augmentations import letterbox
 
 
 # Load YOLOv5 model
-model_path = os.path.join(BASE_DIR, 'yolov5', 'runs', 'train', 'exp2', 'weights', 'best.pt')
-model = DetectMultiBackend(model_path, device='cpu')
+model_path = os.path.join(YOLOV5_PATH, 'runs', 'train', 'exp2', 'weights', 'best_linux.pt')
+model = attempt_load(model_path, map_location='cpu')
+model.eval()
 # device = select_device('cpu')  # or 'cuda:0' if GPU is available
 # model_path = 'yolov5/runs/train/exp/weights/best.pt'  # or wherever your file is
 # Correct relative path to the model file
