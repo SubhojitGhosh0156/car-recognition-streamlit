@@ -6,6 +6,7 @@ import numpy as np
 import streamlit as st
 from PIL import Image
 import easyocr
+from pathlib import Path
 
 # 👇 Add yolov5 path
 YOLO_PATH = os.path.join(os.getcwd(), 'yolov5')
@@ -18,7 +19,8 @@ from models.common import DetectMultiBackend
 # 📌 Model setup
 device = select_device('cpu')
 reader = easyocr.Reader(['en'], gpu=False)
-model_path = os.path.join(os.getcwd(), 'yolov5', 'runs', 'train', 'exp2', 'weights', 'best.pt')
+model_path = Path(__file__).parent / "yolov5" / "runs" / "train" / "exp2" / "weights" / "best.pt"
+
 
 
 # ✅ Load model
