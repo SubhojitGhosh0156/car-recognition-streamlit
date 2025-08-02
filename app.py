@@ -65,7 +65,7 @@ if uploaded_img is not None:
                     plate_text = " ".join([r[-2] for r in result])
                     if "IND" not in plate_text.upper() and "INO" not in plate_text.upper():
                         detected_text = plate_text
-                        
+                        break
 
     # Display results
     st.image(img, caption="Detected Number Plate", channels="BGR", use_column_width=True)
@@ -78,4 +78,3 @@ if uploaded_img is not None:
             st.experimental_rerun()
     else:
         st.warning("⚠️ No valid plate detected (or 'IND' filtered).")
-
