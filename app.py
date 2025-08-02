@@ -10,28 +10,14 @@ from pathlib import Path
 import torch
 import os
 
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-model_path = os.path.join(BASE_DIR, "yolov5", "runs", "train", "exp2", "weights", "best.pt")
-
-# Check if the file exists
-if not os.path.exists(model_path):
-    raise FileNotFoundError(f"Model not found at {model_path}")
-
-# Load the model
-model = torch.hub.load(
-    os.path.join(BASE_DIR, 'yolov5'),
-    'custom',
-    path=model_path,
-    source='local'
-)
-
-
-
 from yolov5.utils.general import scale_boxes, non_max_suppression
 from yolov5.utils.torch_utils import select_device
 from yolov5.models.common import DetectMultiBackend
 
 
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+model_path = os.path.join(BASE_DIR, 'yolov5', 'runs', 'train', 'exp2', 'weights', 'best.pt')
+model = DetectMultiBackend(model_path, device='cpu') 
 device = select_device('cpu')  # or 'cuda:0' if GPU is available
 # model_path = 'yolov5/runs/train/exp/weights/best.pt'  # or wherever your file is
 # Correct relative path to the model file
