@@ -6,10 +6,10 @@ import numpy as np
 import streamlit as st
 from PIL import Image
 import easyocr
+YOLO_PATH = os.path.join(os.path.dirname(__file__), 'yolov5')
 
-# 👇 Add yolov5 path
-sys.path.append('./yolov5')
-
+# Append it to sys.path
+sys.path.append(YOLO_PATH)
 # 👇 Now import from yolov5 modules
 from utils.general import scale_boxes, non_max_suppression
 from utils.torch_utils import select_device
