@@ -5,9 +5,13 @@ import numpy as np
 import os
 from PIL import Image
 import easyocr
-from utils.general import scale_boxes,non_max_suppression
-from utils.torch_utils import select_device
-from models.common import DetectMultiBackend
+import sys
+YOLO_PATH = os.path.join(os.path.dirname(__file__), 'yolov5')
+sys.path.append(YOLO_PATH)
+
+from yolov5.utils.general import scale_boxes, non_max_suppression
+from yolov5.utils.torch_utils import select_device
+from yolov5.models.common import DetectMultiBackend
 
 # Model Setup
 device = select_device('cpu')
