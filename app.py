@@ -7,12 +7,24 @@ from PIL import Image
 import easyocr
 import sys
 from pathlib import Path
-
+import torch
+import os
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 model_path = os.path.join(BASE_DIR, "yolov5", "runs", "train", "exp2", "weights", "best.pt")
 
-model = torch.hub.load(os.path.join(BASE_DIR, 'yolov5'), 'custom', path=model_path, source='local')
+# Check if the file exists
+if not os.path.exists(model_path):
+    raise FileNotFoundError(f"Model not found at {model_path}")
+
+# Load the model
+model = torch.hub.load(
+    os.path.join(BASE_DIR, 'yolov5'),
+    'custom',
+    path=model_path,
+    source='local'
+)
+
 
 
 from yolov5.utils.general import scale_boxes, non_max_suppression
