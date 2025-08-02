@@ -13,3 +13,4 @@ lxml
 easyocr
 split-folders
 requests
+ultralytics
