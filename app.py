@@ -23,8 +23,6 @@ device = select_device('cpu')  # or 'cuda:0' if GPU is available
 # Correct relative path to the model file
 # model_path = os.path.join("car-recognition-streamlit","yolov5", "runs", "train", "exp2", "weights", "best.pt")
 
-model = DetectMultiBackend(model_path, device=device)
-
 # Title
 st.title("🚘 Number Plate Detection")
 
