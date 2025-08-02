@@ -6,6 +6,8 @@ import os
 from PIL import Image
 import easyocr
 import sys
+from pathlib import Path
+
 
 BASE_DIR = Path(__file__).resolve().parent
 model_path = BASE_DIR / "yolov5" / "runs" / "train" / "exp2" / "weights" / "best.pt"
