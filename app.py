@@ -17,7 +17,8 @@ from yolov5.models.common import DetectMultiBackend
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 model_path = os.path.join(BASE_DIR, 'yolov5', 'runs', 'train', 'exp2', 'weights', 'best.pt')
-model = DetectMultiBackend(model_path, device='cpu') 
+model = DetectMultiBackend(model_path, device='cpu')
+model.eval()
 device = select_device('cpu')  # or 'cuda:0' if GPU is available
 # model_path = 'yolov5/runs/train/exp/weights/best.pt'  # or wherever your file is
 # Correct relative path to the model file
