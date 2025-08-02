@@ -22,8 +22,9 @@ model_path = os.path.join(os.getcwd(), 'yolov5', 'runs', 'train', 'exp2', 'weigh
 
 
 # ✅ Load model
-model = torch.load(model_path, map_location=device)['model'].float()
+model = DetectMultiBackend(model_path, device=device)
 model.eval()
+
 
 
 # 🖼️ Streamlit UI
