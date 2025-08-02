@@ -15,7 +15,7 @@ sys.path.append(YOLOV5_PATH)
 from yolov5.models.common import DetectMultiBackend
 from yolov5.utils.general import non_max_suppression, scale_boxes
 from yolov5.utils.augmentations import letterbox
-
+from yolov5.models.experimental import attempt_load
 
 # Load YOLOv5 model
 model_path = os.path.join(YOLOV5_PATH, 'runs', 'train', 'exp2', 'weights', 'best.pt')
