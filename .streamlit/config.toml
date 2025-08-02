@@ -1,0 +1,14 @@
+[server]
+headless = true
+port = 8501
+enableCORS = false
+
+[theme]
+base="light"
+primaryColor="#4B8BBE"
+backgroundColor="#ffffff"
+secondaryBackgroundColor="#f0f2f6"
+textColor="#000000"
+
+[client]
+showErrorDetails = true
