@@ -1,32 +1,29 @@
-import sys
-import os
+import streamlit as st
 import torch
 import cv2
 import numpy as np
-import streamlit as st
+import os
 from PIL import Image
 import easyocr
+from yolov5.utils.general import scale_boxes,non_max_suppression
+from yolov5.utils.torch_utils import select_device
+from yolov5.models.common import DetectMultiBackend
 
-# 👇 Add yolov5 path
-YOLO_PATH ="https://github.com/SubhojitGhosh0156/car-recognition-streamlit/tree/main/yolov5"
-sys.path.append(YOLO_PATH)
-
-# 👇 Now import from yolov5 modules
-from utils.general import scale_boxes, non_max_suppression
-from utils.torch_utils import select_device
-from models.common import DetectMultiBackend
-
-# 🧠 Load YOLOv5 model
+# Model Setup
 device = select_device('cpu')
 reader = easyocr.Reader(['en'], gpu=False)
-model_path = 'https://github.com/SubhojitGhosh0156/car-recognition-streamlit/tree/main/yolov5/runs/train/exp2/weights'
+
+
+# Correct relative path to the model file
+model_path = os.path.join("yolov5", "runs", "train", "exp2", "weights", "best.pt")
+
 model = DetectMultiBackend(model_path, device=device)
 
-# 🖼️ Title
+# Title
 st.title("🚘 Number Plate Detection")
 
-# 📷 Capture Image
-uploaded_img = st.camera_input("📷 Capture Image from Webcam")
+# Capture from camera
+uploaded_img = st.camera_input("📷 Capture Image")
 
 if uploaded_img is not None:
     # Convert to OpenCV format
@@ -63,12 +60,12 @@ if uploaded_img is not None:
                 result = reader.readtext(plate_crop)
                 if result:
                     plate_text = " ".join([r[-2] for r in result])
-                    if "IND" not in plate_text.upper() and "INO" not in plate_text.upper():
+                    if "IND" not in plate_text:
                         detected_text = plate_text
                         break
 
-    # Display results
-    st.image(img, caption="Detected Number Plate", channels="BGR", use_column_width=True)
+    # Display
+    st.image(img, caption="🔍 Detected Number Plate", channels="BGR", use_column_width=True)
 
     if detected_text:
         st.success(f"✅ Detected Plate: {detected_text}")
