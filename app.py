@@ -14,7 +14,7 @@ sys.path.append(YOLOV5_PATH)
 # Import from YOLOv5 modules after appending to sys.path
 from yolov5.models.common import DetectMultiBackend
 from yolov5.utils.general import non_max_suppression, scale_boxes
-from yolov5.utils.general import letterbox
+from yolov5.utils.augmentations import letterbox
 
 
 # Load YOLOv5 model
