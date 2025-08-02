@@ -9,11 +9,11 @@ import sys
 from pathlib import Path
 
 
-BASE_DIR = Path(__file__).resolve().parent
-model_path = BASE_DIR / "yolov5" / "runs" / "train" / "exp2" / "weights" / "best.pt"
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+model_path = os.path.join(BASE_DIR, "yolov5", "runs", "train", "exp2", "weights", "best.pt")
 
-# Use this path when loading your YOLOv5 model
-model = torch.hub.load(str(BASE_DIR / 'yolov5'), 'custom', path=str(model_path), source='local')
+model = torch.hub.load(os.path.join(BASE_DIR, 'yolov5'), 'custom', path=model_path, source='local')
+
 
 from yolov5.utils.general import scale_boxes, non_max_suppression
 from yolov5.utils.torch_utils import select_device
