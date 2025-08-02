@@ -17,7 +17,7 @@ from yolov5.models.common import DetectMultiBackend
 device = select_device('cpu')  # or 'cuda:0' if GPU is available
 # model_path = 'yolov5/runs/train/exp/weights/best.pt'  # or wherever your file is
 # Correct relative path to the model file
-model_path = os.path.join("yolov5", "runs", "train", "exp2", "weights", "best.pt")
+model_path = os.path.join("car-recognition-streamlit","yolov5", "runs", "train", "exp2", "weights", "best.pt")
 
 model = DetectMultiBackend(model_path, device=device)
 
