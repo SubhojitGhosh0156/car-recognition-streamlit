@@ -8,7 +8,7 @@ from PIL import Image
 import easyocr
 
 # 👇 Add yolov5 path
-YOLO_PATH ="car-recognition-streamlit/yolov5"
+YOLO_PATH ="https://github.com/SubhojitGhosh0156/car-recognition-streamlit/tree/main/yolov5"
 sys.path.append(YOLO_PATH)
 
 # 👇 Now import from yolov5 modules
@@ -19,7 +19,7 @@ from models.common import DetectMultiBackend
 # 🧠 Load YOLOv5 model
 device = select_device('cpu')
 reader = easyocr.Reader(['en'], gpu=False)
-model_path = 'yolov5/runs/train/exp2/weights/best.pt'
+model_path = 'https://github.com/SubhojitGhosh0156/car-recognition-streamlit/tree/main/yolov5/runs/train/exp2/weights'
 model = DetectMultiBackend(model_path, device=device)
 
 # 🖼️ Title
