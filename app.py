@@ -1,25 +1,25 @@
-import streamlit as st
+import sys
+import os
 import torch
 import cv2
 import numpy as np
-import os
+import streamlit as st
 from PIL import Image
-import easyocr
-import sys
-from pathlib import Path
-import torch
-import os
 
-from yolov5.utils.general import scale_boxes, non_max_suppression
-from yolov5.utils.torch_utils import select_device
-from yolov5.models.common import DetectMultiBackend
-
-
+# Add yolov5 folder to path
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+YOLOV5_PATH = os.path.join(BASE_DIR, 'yolov5')
+sys.path.append(YOLOV5_PATH)
+
+# Import from YOLOv5 modules after appending to sys.path
+from yolov5.models.common import DetectMultiBackend
+from yolov5.utils.general import non_max_suppression, scale_boxes
+from yolov5.utils.datasets import letterbox
+
+# Load YOLOv5 model
 model_path = os.path.join(BASE_DIR, 'yolov5', 'runs', 'train', 'exp2', 'weights', 'best.pt')
 model = DetectMultiBackend(model_path, device='cpu')
-model.eval()
-device = select_device('cpu')  # or 'cuda:0' if GPU is available
+# device = select_device('cpu')  # or 'cuda:0' if GPU is available
 # model_path = 'yolov5/runs/train/exp/weights/best.pt'  # or wherever your file is
 # Correct relative path to the model file
 # model_path = os.path.join("car-recognition-streamlit","yolov5", "runs", "train", "exp2", "weights", "best.pt")
