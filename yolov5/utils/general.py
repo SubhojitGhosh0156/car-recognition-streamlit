@@ -34,7 +34,7 @@ import torch
 import torchvision
 import yaml
 
-Import 'ultralytics' package or install if missing
+# Import 'ultralytics' package or install if missing
 # try:
 #     import ultralytics
 
@@ -1292,6 +1292,7 @@ if Path(inspect.stack()[0].filename).parent.parent.as_posix() in inspect.stack()
     cv2.imread, cv2.imwrite, cv2.imshow = imread, imwrite, imshow  # redefine
 
 # Variables ------------------------------------------------------------------------------------------------------------
+
 
 
 
