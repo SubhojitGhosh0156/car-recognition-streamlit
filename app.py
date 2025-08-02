@@ -14,7 +14,8 @@ sys.path.append(YOLOV5_PATH)
 # Import from YOLOv5 modules after appending to sys.path
 from yolov5.models.common import DetectMultiBackend
 from yolov5.utils.general import non_max_suppression, scale_boxes
-from yolov5.utils.datasets import letterbox
+from yolov5.utils.general import letterbox
+
 
 # Load YOLOv5 model
 model_path = os.path.join(BASE_DIR, 'yolov5', 'runs', 'train', 'exp2', 'weights', 'best.pt')
