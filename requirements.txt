@@ -6,4 +6,4 @@ Pillow
 easyocr
 matplotlib
 PyYAML
-ultralytics
+
