@@ -8,4 +8,7 @@ matplotlib
 PyYAML
 ultralytics
 seaborn
+pyyaml
+tqdm 
+scipy
 
