@@ -8,8 +8,7 @@ from PIL import Image
 import easyocr
 
 # 👇 Add yolov5 path
-YOLO_PATH = os.path.join(os.getcwd(), 'yolov5')
-sys.path.append(YOLO_PATH)
+sys.path.append('./yolov5')
 
 # 👇 Now import from yolov5 modules
 from utils.general import scale_boxes, non_max_suppression
