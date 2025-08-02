@@ -19,7 +19,11 @@ from yolov5.models.experimental import attempt_load
 
 # Load YOLOv5 model
 model_path = os.path.join(YOLOV5_PATH, 'runs', 'train', 'exp2', 'weights', 'best.pt')
-model = attempt_load(model_path, map_location='cpu')
+device = torch.device('cpu')  # change to 'cuda' if using GPU
+
+# Load model with attempt_load
+model = attempt_load(model_path, map_location=device)
+model.eval()
 model.eval()
 # device = select_device('cpu')  # or 'cuda:0' if GPU is available
 # model_path = 'yolov5/runs/train/exp/weights/best.pt'  # or wherever your file is
