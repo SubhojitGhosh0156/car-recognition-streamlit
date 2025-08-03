@@ -7,6 +7,7 @@ from PIL import Image
 import easyocr
 import sys
 import seaborn as sn
+from pathlib import Path
 # Paths
 BASE_DIR = os.getcwd()
 YOLO_PATH = os.path.join(BASE_DIR, "yolov5")
