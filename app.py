@@ -17,13 +17,21 @@ from yolov5.utils.torch_utils import select_device
 from yolov5.models.common import DetectMultiBackend
 
 # Load YOLOv5 model
+# @st.cache_resource
+# def load_yolo_model():
+#     model_path = os.path.join(YOLO_PATH, 'runs', 'train', 'exp2', 'weights', 'best.pt')
+#     device = select_device('cpu')
+#     model = DetectMultiBackend(model_path, device=device)
+#     return model
+
 @st.cache_resource
 def load_yolo_model():
-    model_path = os.path.join(YOLO_PATH, 'runs', 'train', 'exp2', 'weights', 'best.pt')
     device = select_device('cpu')
+    # ⚠️ Use Path().as_posix() to avoid PosixPath issues
+    model_path = os.path.join(YOLO_PATH, 'runs', 'train', 'exp2', 'weights', 'best.pt').as_posix()
     model = DetectMultiBackend(model_path, device=device)
+    model.eval()
     return model
-
 # Load EasyOCR reader
 @st.cache_resource
 def load_ocr_reader():
