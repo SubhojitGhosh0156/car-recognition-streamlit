@@ -3,4 +3,4 @@ opencv-python
 easyocr
 Pillow
 torch
-ultralytics
+yolov5
