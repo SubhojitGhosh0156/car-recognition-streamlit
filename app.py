@@ -21,7 +21,7 @@ from models.common import DetectMultiBackend
 # 🧠 Load YOLOv5 model
 device = select_device('cpu')
 reader = easyocr.Reader(['en'], gpu=False)
-model_path = os.path.join(BASE_DIR, "yolov5", "runs","train","exp2", "weights", "best.pt") 
+model_path = os.path.join(BASE_DIR,"runs","train","exp2", "weights", "best.pt") 
 model = DetectMultiBackend(model_path, device=device)
 
 # 🖼️ Title
