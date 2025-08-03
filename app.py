@@ -4,8 +4,7 @@ import cv2
 import numpy as np
 from PIL import Image
 import easyocr
-import torch
-from ultralytics import YOLO
+import torch 
 
 # 🖼️ Title and layout
 st.set_page_config(
@@ -18,9 +17,12 @@ st.markdown("This app detects number plates from a live camera feed and extracts
 # --- Functions to load models with caching ---
 @st.cache_resource
 def load_yolo_model(model_path):
-    """Loads the YOLO model from a local file."""
+    """Loads the YOLOv5 model using torch.hub.load."""
     try:
-        model = YOLO(model_path)
+        # Load the model using the yolov5 library via torch.hub.load
+        # The 'source='local'' parameter tells it to look for the repository locally
+        # The 'path' parameter points to the .pt file
+        model = torch.hub.load('yolov5', 'custom', path=model_path, source='local')
         return model
     except Exception as e:
         st.error(f"Error loading YOLO model: {e}")
@@ -61,11 +63,11 @@ if uploaded_file is not None:
     results = model(image_np)
     
     # Render results with bounding boxes
-    results_plotted = results[0].plot()
-    st.image(results_plotted, caption="Detected Number Plate", use_column_width=True)
+    results.render()
+    st.image(results.ims[0], caption="Detected Number Plate", use_column_width=True)
     
     # Process detections for OCR
-    boxes_df = results[0].pandas().xyxy[0]
+    boxes_df = results.pandas().xyxy[0]
     if boxes_df.empty:
         st.warning("⚠️ No number plates were detected in the image.")
     else:
