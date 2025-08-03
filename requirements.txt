@@ -1,5 +1,6 @@
 streamlit
-opencv-python
-easyocr
-Pillow
 torch
+opencv-python-headless
+numpy
+Pillow
+easyocr
