@@ -1,6 +1,8 @@
-streamlit
-torch
-opencv-python-headless
+torch>=1.7.0
+opencv-python
 numpy
-Pillow
-easyocr
+pillow
+PyYAML
+matplotlib
+scipy
+tqdm
