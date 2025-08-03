@@ -58,6 +58,7 @@ if uploaded_img is not None:
                 x2 = min(x2 + pad, img.shape[1])
                 y2 = min(y2 + pad, img.shape[0])
 
+                
                 cv2.rectangle(img, (x1, y1), (x2, y2), (0, 255, 0), 2)
                 plate_crop = img[y1:y2, x1:x2]
                 plate_crop = cv2.resize(plate_crop, None, fx=2, fy=2, interpolation=cv2.INTER_CUBIC)
