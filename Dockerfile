@@ -4,7 +4,7 @@ FROM python:3.10-slim
 # Set the working directory
 WORKDIR /app
 
-# Install system dependencies
+# Install system dependencies, including build tools
 RUN apt-get update && apt-get install -y \
     libgl1-mesa-glx \
     libglib2.0-0 \
@@ -13,6 +13,10 @@ RUN apt-get update && apt-get install -y \
     libxext6 \
     ffmpeg \
     git \
+    build-essential \
+    cmake \
+    libjpeg-dev \
+    zlib1g-dev \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy requirements.txt and install Python dependencies
