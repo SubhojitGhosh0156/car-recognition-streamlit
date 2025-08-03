@@ -11,8 +11,8 @@ import easyocr
 BASE_DIR=os.getcwd()
 st.title(BASE_DIR)
 YOLO_PATH = os.path.join(BASE_DIR, 'yolov5')
+st.title(YOLO_PATH)
 sys.path.append(YOLO_PATH)
-
 # 👇 Now import from yolov5 modules
 from utils.general import scale_boxes, non_max_suppression
 from utils.torch_utils import select_device
