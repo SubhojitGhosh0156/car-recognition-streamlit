@@ -17,9 +17,9 @@ st.title(YOLO_PATH)
 con=os.path.join(YOLO_PATH,"runs","train","exp2", "weights")
 st.title(con)
 # 👇 Now import from yolov5 modules
-from utils.general import scale_boxes, non_max_suppression
-from utils.torch_utils import select_device
-from models.common import DetectMultiBackend
+from yolov5.utils.general import scale_boxes, non_max_suppression
+from yolov5.utils.torch_utils import select_device
+from yolov5.models.common import DetectMultiBackend
 
 # 🧠 Load YOLOv5 model
 device = select_device('cpu')
