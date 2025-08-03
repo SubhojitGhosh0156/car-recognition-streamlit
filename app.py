@@ -13,6 +13,9 @@ st.title(BASE_DIR)
 YOLO_PATH = os.path.join(BASE_DIR, 'yolov5')
 st.title(YOLO_PATH)
 sys.path.append(YOLO_PATH)
+st.title(YOLO_PATH)
+con=os.path.join(YOLO_PATH,"runs","train","exp2", "weights")
+st.title(con)
 # 👇 Now import from yolov5 modules
 from utils.general import scale_boxes, non_max_suppression
 from utils.torch_utils import select_device
@@ -21,7 +24,7 @@ from models.common import DetectMultiBackend
 # 🧠 Load YOLOv5 model
 device = select_device('cpu')
 reader = easyocr.Reader(['en'], gpu=False)
-model_path = os.path.join(BASE_DIR,"runs","train","exp2", "weights", "best.pt") 
+model_path = os.path.join(YOLO_PATH,"runs","train","exp2", "weights", "best.pt") 
 model = DetectMultiBackend(model_path, device=device)
 
 # 🖼️ Title
