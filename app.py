@@ -9,6 +9,7 @@ import easyocr
 
 # 👇 Add yolov5 path
 BASE_DIR=os.getcwd()
+st.title(BASE_DIR)
 YOLO_PATH = os.path.join(BASE_DIR, 'yolov5')
 sys.path.append(YOLO_PATH)
 
