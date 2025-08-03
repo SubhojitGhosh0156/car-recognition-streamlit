@@ -5,12 +5,7 @@ import numpy as np
 from PIL import Image
 import easyocr
 import torch 
-import sys
 
-
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-YOLOV5_PATH = os.path.join(BASE_DIR, 'yolov5')
-sys.path.append(YOLOV5_PATH)
 # 🖼️ Title and layout
 st.set_page_config(
     page_title="Number Plate Recognition",
