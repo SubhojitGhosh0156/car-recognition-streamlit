@@ -24,12 +24,22 @@ from yolov5.models.common import DetectMultiBackend
 #     device = select_device('cpu')
 #     model = DetectMultiBackend(model_path, device=device)
 #     return model
+# from pathlib import Path
+
+# @st.cache_resource
+# def load_yolo_model():
+#     device = select_device('cpu')
+#     # Fix: wrap in Path before calling .as_posix()
+#     model_path = Path(YOLO_PATH) / 'runs' / 'train' / 'exp2' / 'weights' / 'best.pt'
+#     model = DetectMultiBackend(model_path.as_posix(), device=device)
+#     model.eval()
+#     return model
 
 @st.cache_resource
 def load_yolo_model():
     device = select_device('cpu')
     # ⚠️ Use Path().as_posix() to avoid PosixPath issues
-    model_path = os.path.join(YOLO_PATH, 'runs', 'train', 'exp2', 'weights', 'best.pt').as_posix()
+    model_path = Path(YOLO_PATH) / 'runs' / 'train' / 'exp2' / 'weights' / 'best.pt'
     model = DetectMultiBackend(model_path, device=device)
     model.eval()
     return model
