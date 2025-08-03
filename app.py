@@ -20,6 +20,8 @@ def load_yolo_model(model_path):
     """Loads the YOLOv5 model using torch.hub.load."""
     try:
         # Load the model using the yolov5 library via torch.hub.load
+        # The 'source='local'' parameter tells it to look for the repository locally
+        # The 'path' parameter points to the .pt file
         model = torch.hub.load('yolov5', 'custom', path=model_path, source='local')
         return model
     except Exception as e:
@@ -56,14 +58,14 @@ if uploaded_file is not None:
     # Read the image and convert it to a format OpenCV can use
     image = Image.open(uploaded_file).convert("RGB")
     image_np = np.array(image)
-
+    
     # Use the loaded model for inference
     results = model(image_np)
-
+    
     # Render results with bounding boxes
     results.render()
     st.image(results.ims[0], caption="Detected Number Plate", use_column_width=True)
-
+    
     # Process detections for OCR
     boxes_df = results.pandas().xyxy[0]
     if boxes_df.empty:
@@ -73,11 +75,11 @@ if uploaded_file is not None:
         for index, row in boxes_df.iterrows():
             xmin, ymin, xmax, ymax = int(row['xmin']), int(row['ymin']), int(row['xmax']), int(row['ymax'])
             cropped = image_np[ymin:ymax, xmin:xmax]
-
+            
             st.image(cropped, caption="Cropped Number Plate", width=250)
-
+            
             ocr_result = reader.readtext(cropped)
-
+            
             if ocr_result:
                 text = " ".join([res[1] for res in ocr_result])
                 st.success(f"🔤 Extracted Text: `{text}`")
