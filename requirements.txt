@@ -3,4 +3,3 @@ opencv-python
 easyocr
 Pillow
 torch
-git+https://github.com/ultralytics/yolov5.git
