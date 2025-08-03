@@ -29,6 +29,9 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy the app code and other files
 COPY . .
 
+# Copy your custom model file from the 'model' directory into the cloned repository
+COPY model/best.pt yolov5/runs/train/exp2/weights/
+
 # Expose the port Streamlit will run on
 EXPOSE 8501
 
