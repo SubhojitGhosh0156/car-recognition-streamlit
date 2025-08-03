@@ -11,7 +11,7 @@ import easyocr
 
 # Use the script's directory as the base directory for robust path handling
 # This is better than os.getcwd()
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+BASE_DIR = os.getcwd()
 YOLO_PATH = os.path.join(BASE_DIR, 'yolov5')
 sys.path.append(YOLO_PATH)
 
