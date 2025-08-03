@@ -19,9 +19,16 @@ RUN apt-get update && apt-get install -y \
     zlib1g-dev \
     && rm -rf /var/lib/apt/lists/*
 
-# Copy requirements.txt and install Python dependencies
+# Copy requirements.txt for caching purposes
 COPY requirements.txt ./
-RUN pip install --no-cache-dir -r requirements.txt
+
+# Install dependencies one-by-one to pinpoint the error
+RUN pip install --no-cache-dir streamlit
+RUN pip install --no-cache-dir opencv-python
+RUN pip install --no-cache-dir easyocr
+RUN pip install --no-cache-dir Pillow
+RUN pip install --no-cache-dir torch
+RUN pip install --no-cache-dir git+https://github.com/ultralytics/yolov5.git
 
 # Copy the app code and other files
 COPY . .
