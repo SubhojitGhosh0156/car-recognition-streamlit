@@ -18,9 +18,10 @@ MODEL_PATH = os.path.join(YOLO_PATH,"runs","train","exp2", "weights", "best.pt")
 sys.path.append(str(YOLO_PATH))
 
 # Import YOLOv5 internal modules
+# Correct YOLOv5 internal imports
 from yolov5.utils.general import scale_boxes, non_max_suppression
 from yolov5.utils.torch_utils import select_device
-from yolov5.models.common import DetectMultiBackend
+from yolov5.models.experimental import attempt_load
 
 # Streamlit Title
 st.title("🔍 Number Plate Detection using YOLOv5 and EasyOCR")
